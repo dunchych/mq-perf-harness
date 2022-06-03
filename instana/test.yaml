@@ -1,0 +1,24 @@
+com.instana.plugin.ibmmq:
+   enabled: true
+   poll_rate: 60
+   queueManagers:
+      COM-INSTANA-QM01:    # Your Queue Manager name here
+         channel: 'SYSTEM.AUTO.SVRCONN' # Server connection channel
+         username: 'mqmuser' # User ID to connect to MQ (optional)
+         password: 'mqmuser' # User password to connect to MQ (optional)
+         queuesRegex: '.*' # Optional regex for filtering queues
+         availabilityZone: 'IBM MQ Custom Zone' # Optional, cluster name will be used by default 
+         keystore: '/tmp/application.jks' # Keystore path for TLS connection (required only when TLS is enabled)
+         keystorePassword: 'password' # Keystore password for TLS connection (required only when TLS is enabled)
+         cipherSuite: 'TLS_RSA_WITH_AES_256_CBC_SHA256' # TLS cipher suite for TLS connection (required only when TLS is enabled)
+         poll_rate: 60 # Metrics poll rate in seconds (optional)
+      STAN-QM02:   # Your Queue Manager name here
+         channel: 'SYSTEM.AUTO.SVRCONN' # Server connection channel
+         username: 'mqmuser' # User ID to connect to MQ (optional)
+         password: 'mqmuser' # User password to connect to MQ (optional)
+         queuesRegex: '.*' # Optional regex for filtering queues
+         availabilityZone: 'IBM MQ Custom Zone' # Optional, cluster name will be used by default 
+         keystore: '/tmp/application.jks' # Keystore path for TLS connection (required only when TLS is enabled)
+         keystorePassword: 'password' # Keystore password for TLS connection (required only when TLS is enabled)
+         cipherSuite: 'TLS_RSA_WITH_AES_256_CBC_SHA256' # TLS cipher suite for TLS connection (required only when TLS is enabled)
+         poll_rate: 60 # Metrics poll rate in seconds (optional)

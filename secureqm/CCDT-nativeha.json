@@ -1,0 +1,28 @@
+{
+    "channel":
+    [
+        {
+            "name": "MQEXTERNALCHL",
+            "clientConnection":
+            {
+                "connection":
+                [
+                    {
+                        "host": "a815f878119604db78a90ee176117347-1988864384.ca-central-1.elb.amazonaws.com",
+                        "port": 1414
+                    }
+                ],
+                "queueManager": "nativeha"
+            },
+            "transmissionSecurity":
+            {
+              "cipherSpecification": "ECDHE_RSA_AES_128_CBC_SHA256"
+            },
+            "connectionManagement":
+            {
+              "defaultReconnect": "yes"
+            },
+            "type": "clientConnection"
+        }
+   ]
+}

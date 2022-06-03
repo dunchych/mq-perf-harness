@@ -1,0 +1,28 @@
+{
+    "channel":
+    [
+        {
+            "name": "SECUREQMCHL",
+            "clientConnection":
+            {
+                "connection":
+                [
+                    {
+                        "host": "a8c5cab7184e44c95a01fa11a8d696ab-787599120.ca-central-1.elb.amazonaws.com",
+                        "port": 1414
+                    }
+                ],
+                "queueManager": "SECUREQM"
+            },
+            "transmissionSecurity":
+            {
+              "cipherSpecification": "ECDHE_RSA_AES_128_CBC_SHA256"
+            },
+            "connectionManagement":
+            {
+              "defaultReconnect": "yes"
+            },
+            "type": "clientConnection"
+        }
+   ]
+}

@@ -1,0 +1,28 @@
+apiVersion: instana.io/v1
+kind: InstanaAgent
+metadata:
+  name: instana-agent
+spec:
+  zone: 
+    name: labocp48
+  cluster: 
+    name: labocp48
+  agent:
+    key: qUMhYJxjSv6uZh2SyqTEnw
+    endpointHost: monitor.mq-ocp48.labocp48.net
+    endpointPort: '1444'
+    env:
+      INSTANA_AGENT_TAGS: openshift,mq
+    configuration_yaml: |
+      com.instana.plugin.ibmmq:
+        enabled: true
+        poll_rate: 5
+        queueManagers:
+          SECUREQM:
+            host: 'secureqm-ibm-mq.cp4i.svc'
+            port: '1414'
+            channel: 'SYSTEM.ADMIN.SVRCONN'
+            username: 'mqmuser'
+            password: 'mqmuser'
+            queuesRegex: '.*'
+            availabilityZone: 'IBM MQ' 

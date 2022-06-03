@@ -1,0 +1,349 @@
+apiVersion: v1
+data:
+  app.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUROekNDQWgrZ0F3SUJBZ0lVTDRDUis2eU1qOHdiUnptZ2RvZHBzcGc1ck13d0RRWUpLb1pJaHZjTkFRRUwKQlFBd0t6RVZNQk1HQTFVRUF3d01ZWEJ3YkdsallYUnBiMjR4TVJJd0VBWURWUVFMREFsaGNIQWdkR1ZoYlRFdwpIaGNOTWpBeE1EQXhNVFkwT0RRNFdoY05NekF3T1RJNU1UWTBPRFE0V2pBck1SVXdFd1lEVlFRRERBeGhjSEJzCmFXTmhkR2x2YmpFeEVqQVFCZ05WQkFzTUNXRndjQ0IwWldGdE1UQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQUQKZ2dFUEFEQ0NBUW9DZ2dFQkFLZ0NqWHJRT2Z3ZnJUaEYyS3dvOTg2ZENLTkgydGdSZThJUzQ4T0dOaWpoYmdxZgpWMVY3QjVxY0MyelZaS05QTVJTV25PVVpPYmhENEU0V25yN3FqUlhsY3hyQ0cyeHE4YnVYcWhHUjlXOEF0bVo1CithQ2hhbWZ0NXNQM2FWdmxoVE5BeXlXSjR1MHZyWmU1ZkdFc1JRVFVBenRpWkhjSFZYbS9UYTJxK2lKbUl6STMKZnRoUVFQdE1QcFYzSDM1MCtLWG15bDAxZ1dwZ1Y5RUg4akxwdkNYaTNWd2xJOWdEb3o2WURmZ0xmVW16U2JSRgpXT2ROdFBlZFVWMUVMc29hbUhURWZmanlmbTU2UEt5NTJkeVh2ZUx1MGJ2emdWSVZFTFM3MjJmYmtWNjQ5c3BJCnpFeWRLZ3VLR1lZcThSMEhTelZNMnRrNm1xdTJnNlViOVRxa1FQc0NBd0VBQWFOVE1GRXdIUVlEVlIwT0JCWUUKRkpDTHdkSGIydThBemJDS1hjMjRmenlaaiszWE1COEdBMVVkSXdRWU1CYUFGSkNMd2RIYjJ1OEF6YkNLWGMyNApmenlaaiszWE1BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFIdmlZNU9zClB6S045N20yODU5RkFCZjEydGc5TW9VUXVUVnlpS0M1SnpRQktkczUxOFdENHhaSiswVmpyRU5LRXV2cWh0WVkKdXhaTGhzUkJTV0pUWC83S2pNMmlUT0dqZ2dyYkNiemc3UTk5UE9ma2FmY1B1S3Fpd3VRbDI2MWs0UDFWVzNqeAp6Y2FjWjVHbWdMQ0hjTGFSRllpNzNkNG9zbjRXYmJPUW80MFBZTlhoKzI3NVdLZXV0MnV4MGFhRzhBWG56MmI3Ck9xY2FaN3h1aVp6a05qckwwYWg0RHNRM2E2QmxiOUhXNVZLNFk2cnBKU0kySXlrVlVmdnVFdUJLb09wMWNZVysKajlwQURkSFZSWk55MS91WWxNcnZlcjZaV0d0a3F0NUticy9aYXVrV1FMdUpFc1hVZmRRYWsya3l1VW0rYnUvdwpad3gyaHVxS1BaNGNiMFE9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUROekNDQWgrZ0F3SUJBZ0lVTXRNUGUwSEkxWkM1NW1MaVFXTkRRVkNkalprd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0t6RVlNQllHQTFVRUF3d1BiWEVnY1hWbGRXVnRZVzVoWjJWeU1ROHdEUVlEVlFRTERBWnBZbTBnYlhFdwpIaGNOTWpBeE1EQXhNVFkwT0RRNFdoY05NekF3T1RJNU1UWTBPRFE0V2pBck1SZ3dGZ1lEVlFRRERBOXRjU0J4CmRXVjFaVzFoYm1GblpYSXhEekFOQmdOVkJBc01CbWxpYlNCdGNUQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQUQKZ2dFUEFEQ0NBUW9DZ2dFQkFPWDhkMGI0UVpYV1FxczFyUDdDa1oxMENVV2YrUVFnVFUxVENVdURXejQrNWlyeQpGRDhEaEorT1lPRDc5WGNkQ25qTFdiellUeElGOGtyc3ZiYWdMZlpWU2hVNnJySHc1aUhpOWZqQ3k5Rm4zb1pHCmFRcjJUWnlGZ2JkdHIxWXc4bTRPSjdEaEJTS2NmdDVLRVRnNXVPc2UyR1dQWTNQN3E1SWU1SENVMnpUSXNLUTkKYUNGUUZ0YXZEMWhIcG93RU8wZEsvanh1SlR3RklDeXlOWHdsa2swN3ZVbkdxOUxSVkJGTVBYSEZ6d29Dak8vRQpaMHo5LzdLeUtsbmd6a291YXByckoraDJKbVJETXUyRDhjSEl5THZVRTg2c1UrQ3Z4UER2cElBTlUxaWVEQm9WCnd0bWUwM051L1lhdDlOVnlEQjQzdnVyTGpxYjhqUmlXMnRDY2dSVUNBd0VBQWFOVE1GRXdIUVlEVlIwT0JCWUUKRkVZak44RW15ZUJRY0dBVGxtODFDK2ZVb1hHVU1COEdBMVVkSXdRWU1CYUFGRVlqTjhFbXllQlFjR0FUbG04MQpDK2ZVb1hHVU1BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKZUx5QWs4ClJTWFp6T2IyWlRjTzc5ZWJaTXJGdHo5Z1MyY0EyK1pCd1FVeEcrTzQvb2RFWnVJRnR0U04vT1M5VEhFMFFodWsKcFl6ZXh6U29RaFNPY2JHZkZOSExEZUZXNHAxa1d1b0ZVTnVQekNkcFROeVBhbnE3ZzBZZVdOMy9kMjdpekQzaApuUTFnS3lpOEVBN2tWclFQRHgyQ1V1U1pDSWZ3aGl4Z2xPU01IRWNEeEtwQnFTdTQzOXNHdExjK0VLWmwvMFBCCnZkRzlacEltWUtrUDFhekM2cFBIRlppM0hJZHZ0WGZLRFU2RzRlQ09GTHhIb01RM0ttdDl0Q2lNQ0pESzdlRkQKYXg2eDBVZ1N4cG1vM2tkZHdEZjgxQkZmYVVraE9IbzN4NVBBclFyd25xQStzSlZOZVdkbitkMUMwQitEajl5YgpMcTVLTHoxZGxIa3ErUEU9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+  tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2d0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktrd2dnU2xBZ0VBQW9JQkFRRGwvSGRHK0VHVjFrS3IKTmF6K3dwR2RkQWxGbi9rRUlFMU5Vd2xMZzFzK1B1WXE4aFEvQTRTZmptRGcrL1YzSFFwNHkxbTgyRThTQmZKSwo3TDIyb0MzMlZVb1ZPcTZ4OE9ZaDR2WDR3c3ZSWjk2R1Jta0s5azJjaFlHM2JhOVdNUEp1RGlldzRRVWluSDdlClNoRTRPYmpySHRobGoyTnorNnVTSHVSd2xOczB5TENrUFdnaFVCYldydzlZUjZhTUJEdEhTdjQ4YmlVOEJTQXMKc2pWOEpaSk5PNzFKeHF2UzBWUVJURDF4eGM4S0FvenZ4R2RNL2YreXNpcFo0TTVLTG1xYTZ5Zm9kaVprUXpMdApnL0hCeU1pNzFCUE9yRlBncjhUdzc2U0FEVk5Zbmd3YUZjTFpudE56YnYyR3JmVFZjZ3dlTjc3cXk0Nm0vSTBZCmx0clFuSUVWQWdNQkFBRUNnZ0VCQUpNVWVsTnd3TURLWGFpUWt5bjUxSllWZHppSHJnRHRoNEpEOEZYU2s2K2oKR2grczRUWExVaTJZS0d5NXRhbVBjUHIvVVV4c0tXVWxXR2FDTUhGeXp2SVNhV1phT1E2ak9RbkMwL3RhMkczNwpOMXczKzBWL2J2TUNqb3A0SXdIRUc4WTJWenZQTERHT1U3UmxPYzN6WEVkQldyTFltSW04RVdWSlRGNlRVL3pVCmhUTjU4RGFHY0xKdzRTa1ByaTBYYzFUVzVieDcxUjd4aGl0NlNlZFJTVGlKTUZjUmJVK2lNUmVqVkMwQ2swZVQKQTBoTUk1N1ZvdG1pOFEvNzJKT0NxenhTbDRGUE1Xb0VYRUlTc3FHbjJrNXp6SENUMlFhcHpjSkFBVytURHM5awprdk5hRC81NGwwMDZJZ1gxUU91QnNDU0tjZWxyMUxvc0xBaWNUdGNvVzZFQ2dZRUEvaG0zSU1hUno1UVlkRjdDCnk1eFNHUUpESnlmZysrTkZqY2FKNFExV0RVUDA2aC9LSk5PUW81d3pVamlINTVrdFBXL2N4UnZHNGhPSitjQlEKT2NVN1RPbThwY3VzNGlkbFE2blNtcTBpQlBoNENYZ3JGeXdUVWtJNHhoa2JnZzlOSG1qdzE2c0FSMkFtNC9uUwpQK3A4VlhPdi9IQzNXRWFrY25zTEZZMHdQTDhDZ1lFQTU3U2FHRmdjNG1ZYVhzK1dtUDArNk1kdmtEVFhVK1A0CmtMVUZqZSt4OUJmNFYrMDh3ZEs5aUhtcDREb2hCZ1JFYVJXVVpNendKNHVzY3ZDUDVJT2NTclBJNVdGL1VYajcKelI0cjNQRTFxeVZZRUpEWTEwdjVzL0MrWHhCNTZoZ3YxVUtocGhXeDZUbFdrWFp2RnBmRzRSZFYxRzl3dVV2RQpUT3FhVmVGbjh5c0NnWUVBcC9qaDJQWExEOWlMYmVueWhWeVozTlJsQmU1VHlNOU5mRkpCZFJjMnltQWc5OS81CjVleEJVaGFBeXBwNkpMeGFicUdTNUczZlJEVzhZUEFqV0gwc0hVVHFJd09JRHB3U1VlOWlQRU8xR0dvVUY5WnIKVGM4aUdwK1NIa29jcUJacldXM3Z2L0hYcGxkR2ZpLzRMNjVYY0xtZ0haVjViZzZNeU96VHYvUnNiY3NDZ1lBWQo3NUhKM3VtMDM4SWt3L2gwSElVQnJqenVheEZsWU5wbVVHVDVvbnNuUnRFZVBWVFZreVY4bzROSnMxZk1ldmNWCnpCRzlTMlRwREpvUmdKd3J2cEk2WStEUjlzMHA2bmhHMmVGa2xMenUzMFQ3KzJxcXVPMTFsUW9YMXdFWDFXU0kKY2ZSTm1IWWVJR0tWb3daUGl5UUhJMmpFUlAzL293ek1MazlQd01OY0l3S0JnUUNNNjJLSDRod1VueWFYUm0yTwpuSmRkYTh5eXBnN29qUFRLSThoeXpNKzhGd0pkTW9OelowcXk3NVY5RVkyN0RhRFoxNm53TUhqT21DRkQvcWxzCnJpQjF2Rko5RlA5VjYrRUEzRDYvK0REL2pNYlo5TzRsNG1YazZaejFwN09SdHU5b3ZMWDFDTTZ3Ni90WGhEUGsKd0dxenh3cFd6MmFhdVdlMGh5UEc3dHpmYnc9PQotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tCg==
+kind: Secret
+metadata:
+  name: $MQ_QUEUE_MANAGER
+type: Opaque
+---
+apiVersion: v1
+data:
+  mq.ini: |-
+    Service:
+      Name=AuthorizationService
+      EntryPoints=14
+      SecurityPolicy=UserExternal
+  mq.mqsc: |-
+    DEFINE QLOCAL('APPQ')
+    DEFINE CHANNEL(MTLSQMCHL) CHLTYPE(SVRCONN) TRPTYPE(TCP) SSLCAUTH(REQUIRED) SSLCIPH('ANY_TLS12_OR_HIGHER')
+    ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) ADOPTCTX(YES) CHCKCLNT(OPTIONAL) CHCKLOCL(OPTIONAL) AUTHENMD(OS)
+    SET CHLAUTH('MTLSQMCHL') TYPE(SSLPEERMAP) SSLPEER('CN=application1,OU=app team1') USERSRC(MAP) MCAUSER('app1') ACTION(ADD)
+    REFRESH SECURITY TYPE(CONNAUTH)
+    SET AUTHREC PRINCIPAL('app1') OBJTYPE(QMGR) AUTHADD(CONNECT,INQ)
+    SET AUTHREC PROFILE('APPQ') PRINCIPAL('app1') OBJTYPE(QUEUE) AUTHADD(BROWSE,GET,INQ,PUT)
+kind: ConfigMap
+metadata:
+  name: $MQ_QUEUE_MANAGER
+---
+apiVersion: v1
+imagePullSecrets:
+- name: ibm-entitlement-key
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+    app.kubernetes.io/name: ibm-mq
+  name: $MQ_QUEUE_MANAGER-ibm-mq
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+    app.kubernetes.io/name: ibm-mq
+  name: $MQ_QUEUE_MANAGER-ibm-mq
+spec:
+  type: ClusterIP
+  ports:
+  - name: console-https
+    port: 9443
+  - name: qmgr
+    port: 1414
+  selector:
+    app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+    app.kubernetes.io/name: ibm-mq
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+    app.kubernetes.io/name: ibm-mq
+  name: $MQ_QUEUE_MANAGER-ibm-mq-replica-0
+spec:
+  type: ClusterIP
+  ports:
+  - name: qmgr
+    port: 9414
+  publishNotReadyAddresses: true
+  selector:
+    statefulset.kubernetes.io/pod-name: $MQ_QUEUE_MANAGER-ibm-mq-0
+---    
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+    app.kubernetes.io/name: ibm-mq
+  name: $MQ_QUEUE_MANAGER-ibm-mq-replica-1
+spec:
+  type: ClusterIP
+  ports:
+  - name: qmgr
+    port: 9414
+  publishNotReadyAddresses: true
+  selector:
+    statefulset.kubernetes.io/pod-name: $MQ_QUEUE_MANAGER-ibm-mq-1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+    app.kubernetes.io/name: ibm-mq
+  name: $MQ_QUEUE_MANAGER-ibm-mq-replica-2
+spec:
+  type: ClusterIP
+  ports:
+  - name: qmgr
+    port: 9414
+  publishNotReadyAddresses: true
+  selector:
+    statefulset.kubernetes.io/pod-name: $MQ_QUEUE_MANAGER-ibm-mq-2   
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+    app.kubernetes.io/name: ibm-mq
+    app.kubernetes.io/version: $MQ_VERSION
+  name: $MQ_QUEUE_MANAGER-ibm-mq
+spec:
+  podManagementPolicy: Parallel
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+      app.kubernetes.io/name: ibm-mq
+  serviceName: qm
+  template:
+    metadata:
+      annotations:
+        cloudpakId: c8b82d189e7545f0892db9ef2731b90d
+        cloudpakName: IBM Cloud Pak for Integration
+        productChargedContainers: qmgr
+        productCloudpakRatio: "4:1"
+        productID: 21dfe9a0f00f444f888756d835334909
+        productMetric: VIRTUAL_PROCESSOR_CORE
+        productName: IBM MQ Advanced for Non-Production with CP4I License
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+        app.kubernetes.io/name: ibm-mq
+        app.kubernetes.io/version: $MQ_VERSION
+        statefulSetName: $MQ_QUEUE_MANAGER-ibm-mq
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - s390x
+                - ppc64le
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                - linux
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: statefulSetName
+                operator: In
+                values:
+                - $MQ_QUEUE_MANAGER-ibm-mq
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - env:
+        - name: LICENSE
+          value: accept
+        - name: MQ_QMGR_NAME
+          value: $MQ_QUEUE_MANAGER
+        - name: MQ_NATIVE_HA
+          value: "true"
+        - name: AMQ_CLOUD_PAK
+          value: "true"
+        - name: MQ_NATIVE_HA_INSTANCE_0_NAME
+          value: $MQ_QUEUE_MANAGER-ibm-mq-0
+        - name: MQ_NATIVE_HA_INSTANCE_0_REPLICATION_ADDRESS
+          value: $MQ_QUEUE_MANAGER-ibm-mq-replica-0(9414)
+        - name: MQ_NATIVE_HA_INSTANCE_1_NAME
+          value: $MQ_QUEUE_MANAGER-ibm-mq-1
+        - name: MQ_NATIVE_HA_INSTANCE_1_REPLICATION_ADDRESS
+          value: $MQ_QUEUE_MANAGER-ibm-mq-replica-1(9414)
+        - name: MQ_NATIVE_HA_INSTANCE_2_NAME
+          value: $MQ_QUEUE_MANAGER-ibm-mq-2
+        - name: MQ_NATIVE_HA_INSTANCE_2_REPLICATION_ADDRESS
+          value: $MQ_QUEUE_MANAGER-ibm-mq-replica-2(9414)
+        - name: LOG_FORMAT
+          value: basic
+        - name: MQ_ENABLE_METRICS
+          value: "true"
+        - name: MQ_EPHEMERAL_PREFIX
+          value: /run/mqm
+        - name: MQ_NATIVE_HA_TLS
+          value: "true"
+        - name: MQ_NATIVE_HA_CIPHERSPEC
+          value: ANY_TLS12_OR_HIGHER
+        image: $MQ_IMAGE
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          exec:
+            command:
+            - chkmqhealthy
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        name: qmgr
+        ports:
+        - containerPort: 1414
+          protocol: TCP
+        - containerPort: 9443
+          protocol: TCP
+        - containerPort: 9157
+          protocol: TCP
+        - containerPort: 9414
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command:
+            - chkmqready
+          failureThreshold: 1
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 3
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 512Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: true
+        startupProbe:
+          exec:
+            command:
+            - chkmqstarted
+          failureThreshold: 24
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+        terminationMessagePath: /run/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/mqm/ha/pki/keys/ha
+          name: ha-tls
+          readOnly: true
+        - mountPath: /etc/mqm/pki/trust/0
+          name: trust0
+          readOnly: true
+        - mountPath: /etc/mqm/pki/keys/default
+          name: default
+          readOnly: true
+        - mountPath: /etc/mqm/mq.mqsc
+          name: mqsc-cm-$MQ_QUEUE_MANAGER
+          readOnly: true
+          subPath: mq.mqsc
+        - mountPath: /etc/mqm/mq.ini
+          name: ini-cm-$MQ_QUEUE_MANAGER
+          readOnly: true
+          subPath: mq.ini
+        - mountPath: /mnt/mqm
+          name: qm
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 0
+      serviceAccount: $MQ_QUEUE_MANAGER-ibm-mq
+      serviceAccountName: $MQ_QUEUE_MANAGER-ibm-mq
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: ha-tls
+        secret:
+          defaultMode: 288
+          secretName: $MQ_QUEUE_MANAGER
+      - name: trust0
+        secret:
+          defaultMode: 288
+          items:
+          - key: app.crt
+            path: app.crt
+          secretName: $MQ_QUEUE_MANAGER
+      - name: default
+        secret:
+          defaultMode: 288
+          items:
+          - key: tls.key
+            path: tls.key
+          - key: tls.crt
+            path: tls.crt
+          secretName: $MQ_QUEUE_MANAGER
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: mq.mqsc
+            path: mq.mqsc
+          name: $MQ_QUEUE_MANAGER
+        name: mqsc-cm-$MQ_QUEUE_MANAGER
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: mq.ini
+            path: mq.ini
+          name: $MQ_QUEUE_MANAGER
+        name: ini-cm-$MQ_QUEUE_MANAGER
+  updateStrategy:
+    type: OnDelete
+  volumeClaimTemplates:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+        app.kubernetes.io/name: ibm-mq
+      name: qm
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
+      storageClassName: $STORAGE_CLASS
+      volumeMode: Filesystem
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-$MQ_QUEUE_MANAGER
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/instance: $MQ_QUEUE_MANAGER
+    app.kubernetes.io/name: ibm-mq
+  ports:
+    - name: mq
+      protocol: TCP
+      port: 1414
+      targetPort: 1414
+    - name: webui
+      protocol: TCP
+      port: 9443
+      targetPort: 9443

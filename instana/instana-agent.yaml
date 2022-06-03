@@ -1,0 +1,210 @@
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  annotations:
+  name: instana-agent
+  namespace: instana-agent
+  labels:
+    app.kubernetes.io/name: instana-agent
+    app.kubernetes.io/version: 1.2.30
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: instana-agent
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: instana-agent
+        app.kubernetes.io/version: 1.2.30
+        instana/agent-mode: APM
+    spec:
+      restartPolicy: Always
+      serviceAccountName: instana-agent
+      hostPID: true
+      schedulerName: default-scheduler
+      hostNetwork: true
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      containers:
+        - resources:
+            limits:
+              cpu: 1500m
+              memory: 768Mi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          terminationMessagePath: /dev/termination-log
+          name: instana-agent
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 42699
+              host: 127.0.0.1
+              scheme: HTTP
+            initialDelaySeconds: 300
+            timeoutSeconds: 3
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: INSTANA_AGENT_LEADER_ELECTOR_PORT
+              value: '42655'
+            - name: INSTANA_ZONE
+            - name: INSTANA_KUBERNETES_CLUSTER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: instana-agent
+                  key: cluster_name
+            - name: INSTANA_AGENT_ENDPOINT
+              value: monitor.mq-ocp48.labocp48.net
+            - name: INSTANA_AGENT_ENDPOINT_PORT
+              value: '1444'
+            - name: INSTANA_AGENT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: instana-agent
+                  key: key
+            - name: INSTANA_DOWNLOAD_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: instana-agent
+                  key: downloadKey
+                  optional: true
+            - name: INSTANA_MVN_REPOSITORY_URL
+              value: 'https://artifact-public.instana.io'
+            - name: INSTANA_AGENT_POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+          securityContext:
+            privileged: true
+          ports:
+            - hostPort: 42699
+              containerPort: 42699
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: dev
+              mountPath: /dev
+            - name: run
+              mountPath: /run
+            - name: var-run
+              mountPath: /var/run
+            - name: sys
+              mountPath: /sys
+            - name: var-log
+              mountPath: /var/log
+            - name: var-lib
+              mountPath: /var/lib
+            - name: var-data
+              mountPath: /var/data
+            - name: machine-id
+              mountPath: /etc/machine-id
+            - name: configuration
+              mountPath: /root/configuration.yaml
+              subPath: configuration.yaml
+            - name: mq-key-jks-name
+              mountPath: /opt/instana/agent/etc/MQExplorer.jks
+              subPath: MQExplorer.jks
+          terminationMessagePolicy: File
+          image: 'icr.io/instana/agent:latest'
+        - resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          terminationMessagePath: /dev/termination-log
+          name: leader-elector
+          command:
+            - /busybox/sh
+            - '-c'
+            - >-
+              sleep 12 && /app/server --election=instana --http=localhost:42655
+              --id=$(INSTANA_AGENT_POD_NAME)
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 42655
+              host: 127.0.0.1
+              scheme: HTTP
+            initialDelaySeconds: 30
+            timeoutSeconds: 3
+            periodSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: INSTANA_AGENT_POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+          ports:
+            - hostPort: 42655
+              containerPort: 42655
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          terminationMessagePolicy: File
+          image: 'icr.io/instana/leader-elector:0.5.13'
+      serviceAccount: instana-agent
+      volumes:
+        - name: dev
+          hostPath:
+            path: /dev
+            type: ''
+        - name: run
+          hostPath:
+            path: /run
+            type: ''
+        - name: var-run
+          hostPath:
+            path: /var/run
+            type: ''
+        - name: sys
+          hostPath:
+            path: /sys
+            type: ''
+        - name: var-log
+          hostPath:
+            path: /var/log
+            type: ''
+        - name: var-lib
+          hostPath:
+            path: /var/lib
+            type: ''
+        - name: var-data
+          hostPath:
+            path: /var/data
+            type: ''
+        - name: machine-id
+          hostPath:
+            path: /etc/machine-id
+            type: ''
+        - name: configuration
+          configMap:
+            name: instana-agent
+            defaultMode: 420
+        - name: mq-key-jks-name
+          secret:
+            secretName: keystore-secret-name
+            defaultMode: 420
+      dnsPolicy: ClusterFirstWithHostNet
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+  revisionHistoryLimit: 10
+status:
+  currentNumberScheduled: 3
+  numberMisscheduled: 0
+  desiredNumberScheduled: 3
+  numberReady: 3
+  observedGeneration: 1
+  updatedNumberScheduled: 3
+  numberAvailable: 3

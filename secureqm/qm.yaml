@@ -1,0 +1,38 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: secureqm
+spec:
+  license:
+    accept: true
+    license: L-RJON-C7QG3S
+    use: Production
+  queueManager:
+    name: SECUREQM
+    availability:
+      type: NativeHA
+    mqsc:
+      - configMap:
+          name: secureqm
+          items:
+            - tls.mqsc
+    storage:
+      defaultClass: gp2
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: 'yes'
+          name: qmgr
+  version: 9.2.4.0-r1
+  web:
+    enabled: true
+  pki:
+    keys:
+      - name: secureqm
+        secret:
+          secretName: secureqm
+          items: 
+          - tls.key
+          - tls.crt

@@ -1,0 +1,28 @@
+{
+    "channel":
+    [
+        {
+            "name": "SECUREQMCHL",
+            "clientConnection":
+            {
+                "connection":
+                [
+                    {
+                        "host": "secureqm-ibm-mq-web-cp4i.apps.mq-ocp48.labocp48.net",
+                        "port": 443
+                    }
+                ],
+                "queueManager": "SECUREQM"
+            },
+            "transmissionSecurity":
+            {
+              "cipherSpecification": "ECDHE_RSA_AES_128_CBC_SHA256"
+            },
+            "connectionManagement":
+            {
+              "defaultReconnect": "yes"
+            },
+            "type": "clientConnection"
+        }
+   ]
+}

@@ -1,0 +1,27 @@
+apiVersion: instana.io/v1beta1
+kind: InstanaAgent
+metadata:
+  name: instana-agent
+  namespace: instana-agent
+spec:
+  agent.zone.name: ca-central
+  agent.key: qUMhYJxjSv6uZh2SyqTEnw
+  agent.endpoint.host: monitor.mq-ocp48.labocp48.net
+  agent.endpoint.port: 1444
+  agent.env:
+    INSTANA_AGENT_TAGS: roks, mq
+  cluster.name: labocp48
+  config.files:
+    configuration.yaml: |
+      com.instana.plugin.ibmmq:
+        enabled: true
+        poll_rate: 5
+        queueManagers:
+          nativeha:
+            host: 'secureqm-ibm-mq.cp4i.svc.cluster.local'
+            port: '1414'
+            channel: 'SYSTEM.ADMIN.SVRCONN'
+            username: 'mqmuser'
+            password: 'mqmuser'
+            queuesRegex: '.*'
+            availabilityZone: 'IBM MQ'

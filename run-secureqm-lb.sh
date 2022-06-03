@@ -1,0 +1,17 @@
+docker run -it --detach --net="host" \
+--env MQ_QMGR_NAME=SECUREQM \
+--env MQ_QMGR_HOSTNAME=a8c5cab7184e44c95a01fa11a8d696ab-787599120.ca-central-1.elb.amazonaws.com \
+--env MQ_QMGR_PORT=1414 \
+--env MQ_QMGR_CHANNEL=SECUREQMCHL \
+--env MQ_AUTORECONNECT=MQCNO_RECONNECT \
+--env MQ_QMGR_QREQUEST_PREFIX=REQUEST \
+--env MQ_QMGR_QREPLY_PREFIX=REPLY \
+--env MQ_RESPONDER_THREADS=1 \
+--env MQ_MSGSIZE=2048 \
+--env MQ_RUNLENGTH=30 \
+--env MQ_TLS_CIPHER=ECDHE_RSA_AES_128_CBC_SHA256 \
+--env MQ_TLS_CERTLABEL=mqservercert \
+--env MQ_RESULTS_CSV=TRUE \
+--env MQ_ERRORS=TRUE \
+--env MQ_FIXED_CLIENTS=1 \
+--env MQ_DATA=1 cphtestp

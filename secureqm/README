@@ -1,0 +1,6 @@
+https://www.ibm.com/docs/en/ibm-mq/9.2?topic=manager-example-configuring-tls
+
+export MQCCDTURL=/Users/yaro/projects/mq-perf-harness/secureqm/CCDT.json 
+export MQSSLKEYR=/Users/yaro/projects/mq-perf-harness/secureqm/clientkey 
+
+/opt/mqm/samp/bin/amqsputc TEST SECUREQM

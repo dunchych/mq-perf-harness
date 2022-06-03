@@ -1,0 +1,282 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"mq.ibm.com/v1beta1","kind":"QueueManager","metadata":{"annotations":{},"name":"qm1","namespace":"cp4i"},"spec":{"license":{"accept":true,"license":"L-RJON-C7QG3S","metric":"VirtualProcessorCore","use":"NonProduction"},"pki":{"keys":[{"name":"default","secret":{"items":["tls.key","tls.crt"],"secretName":"qm1"}}],"trust":[{"name":"trust0","secret":{"items":["app.crt"],"secretName":"qm1"}}]},"queueManager":{"availability":{"type":"NativeHA"},"ini":[{"configMap":{"items":["mq.ini"],"name":"qm1"}}],"mqsc":[{"configMap":{"items":["mq.mqsc"],"name":"qm1"}}],"storage":{"defaultClass":"gp2-csi"}},"template":{"pod":{"containers":[{"env":[{"name":"MQSNOAUT","value":"yes"}],"name":"qmgr"}]}},"version":"9.2.4.0-r1","web":{"enabled":true}}}
+  resourceVersion: '17980702'
+  name: qm1-ibm-mq
+  uid: 96d9b57b-b23c-4b1e-8003-40cd7c3e1362
+  creationTimestamp: '2022-04-01T18:10:28Z'
+  generation: 1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: integration
+      app.kubernetes.io/instance: qm1
+      app.kubernetes.io/managed-by: operator
+      app.kubernetes.io/name: ibm-mq
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/component: integration
+        app.kubernetes.io/instance: qm1
+        app.kubernetes.io/managed-by: operator
+        app.kubernetes.io/name: ibm-mq
+        app.kubernetes.io/version: 9.2.4.0
+        statefulSetName: qm1-ibm-mq
+      annotations:
+        cloudpakId: c8b82d189e7545f0892db9ef2731b90d
+        productVersion: 9.2.4.0
+        productID: 21dfe9a0f00f444f888756d835334909
+        cloudpakName: IBM Cloud Pak for Integration
+        kubectl.kubernetes.io/last-applied-configuration: >
+          {"apiVersion":"mq.ibm.com/v1beta1","kind":"QueueManager","metadata":{"annotations":{},"name":"qm1","namespace":"cp4i"},"spec":{"license":{"accept":true,"license":"L-RJON-C7QG3S","metric":"VirtualProcessorCore","use":"NonProduction"},"pki":{"keys":[{"name":"default","secret":{"items":["tls.key","tls.crt"],"secretName":"qm1"}}],"trust":[{"name":"trust0","secret":{"items":["app.crt"],"secretName":"qm1"}}]},"queueManager":{"availability":{"type":"NativeHA"},"ini":[{"configMap":{"items":["mq.ini"],"name":"qm1"}}],"mqsc":[{"configMap":{"items":["mq.mqsc"],"name":"qm1"}}],"storage":{"defaultClass":"gp2-csi"}},"template":{"pod":{"containers":[{"env":[{"name":"MQSNOAUT","value":"yes"}],"name":"qmgr"}]}},"version":"9.2.4.0-r1","web":{"enabled":true}}}
+        productChargedContainers: qmgr
+        productCloudpakRatio: '4:1'
+        productName: IBM MQ Advanced for Non-Production
+        productMetric: VIRTUAL_PROCESSOR_CORE
+    spec:
+      restartPolicy: Always
+      serviceAccountName: qm1-ibm-mq
+      schedulerName: default-scheduler
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: statefulSetName
+                    operator: In
+                    values:
+                      - qm1-ibm-mq
+              topologyKey: kubernetes.io/hostname
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      containers:
+        - resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '1'
+              memory: 1Gi
+          readinessProbe:
+            exec:
+              command:
+                - chkmqready
+            timeoutSeconds: 3
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 1
+          terminationMessagePath: /run/termination-log
+          name: qmgr
+          livenessProbe:
+            exec:
+              command:
+                - chkmqhealthy
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 1
+          env:
+            - name: MQSNOAUT
+              value: 'yes'
+            - name: LICENSE
+              value: accept
+            - name: MQ_QMGR_NAME
+              value: qm1
+            - name: MQ_MULTI_INSTANCE
+              value: 'false'
+            - name: MQ_ENABLE_METRICS
+              value: 'true'
+            - name: MQ_ENABLE_EMBEDDED_WEB_SERVER
+              value: 'true'
+            - name: LOG_FORMAT
+              value: basic
+            - name: DEBUG
+              value: 'false'
+            - name: MQ_ENABLE_TRACE_STRMQM
+              value: 'false'
+            - name: MQ_EPHEMERAL_PREFIX
+              value: /run/mqm
+            - name: MQ_GRACE_PERIOD
+              value: '29'
+            - name: MQ_NATIVE_HA
+              value: 'true'
+            - name: AMQ_CLOUD_PAK
+              value: 'true'
+            - name: MQ_NATIVE_HA_INSTANCE_0_NAME
+              value: qm1-ibm-mq-0
+            - name: MQ_NATIVE_HA_INSTANCE_0_REPLICATION_ADDRESS
+              value: qm1-ibm-mq-replica-0(9414)
+            - name: MQ_NATIVE_HA_INSTANCE_1_NAME
+              value: qm1-ibm-mq-1
+            - name: MQ_NATIVE_HA_INSTANCE_1_REPLICATION_ADDRESS
+              value: qm1-ibm-mq-replica-1(9414)
+            - name: MQ_NATIVE_HA_INSTANCE_2_NAME
+              value: qm1-ibm-mq-2
+            - name: MQ_NATIVE_HA_INSTANCE_2_REPLICATION_ADDRESS
+              value: qm1-ibm-mq-replica-2(9414)
+            - name: MQ_NATIVE_HA_TLS
+              value: 'false'
+            - name: MQ_GENERATE_CERTIFICATE_HOSTNAME
+              value: qm1-ibm-mq-web-cp4i.apps.mq-ocp48.labocp48.net
+            - name: MQ_BETA_ENABLE_SSO
+              value: 'true'
+            - name: MQ_CONSOLE_DEFAULT_CCDT_HOSTNAME
+              value: qm1-ibm-mq-qm-cp4i.apps.mq-ocp48.labocp48.net
+            - name: MQ_CONSOLE_DEFAULT_CCDT_PORT
+              value: '443'
+            - name: MQ_OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: qm1-ibm-mq-oidc-reg
+                  key: CLIENT_ID
+            - name: MQ_OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: qm1-ibm-mq-oidc-reg
+                  key: CLIENT_SECRET
+            - name: MQ_OIDC_UNIQUE_USER_IDENTIFIER
+              value: sub
+            - name: MQ_OIDC_AUTHORIZATION_ENDPOINT
+              value: >-
+                https://cp-console.apps.mq-ocp48.labocp48.net:443/idprovider/v1/auth/authorize
+            - name: MQ_OIDC_TOKEN_ENDPOINT
+              value: >-
+                https://cp-console.apps.mq-ocp48.labocp48.net:443/idprovider/v1/auth/token
+            - name: MQ_OIDC_JWK_ENDPOINT
+              value: >-
+                https://cp-console.apps.mq-ocp48.labocp48.net:443/idprovider/v1/auth/jwk
+            - name: MQ_OIDC_ISSUER_IDENTIFIER
+              valueFrom:
+                configMapKeyRef:
+                  name: ibm-iam-bindinfo-platform-auth-idp
+                  key: OIDC_ISSUER_URL
+            - name: IAM_URL
+              value: 'https://cp-console.apps.mq-ocp48.labocp48.net:443'
+            - name: MQ_NAMESPACE
+              value: cp4i
+            - name: MQ_CP4I_SERVICES_URL
+            - name: MQ_ENABLE_OPEN_TRACING
+              value: 'false'
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            runAsNonRoot: true
+            readOnlyRootFilesystem: false
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 1414
+              protocol: TCP
+            - containerPort: 9157
+              protocol: TCP
+            - containerPort: 9443
+              protocol: TCP
+            - containerPort: 9414
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          startupProbe:
+            exec:
+              command:
+                - chkmqstarted
+            timeoutSeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 24
+          volumeMounts:
+            - name: data
+              mountPath: /mnt/mqm
+            - name: default
+              readOnly: true
+              mountPath: /etc/mqm/pki/keys/default
+            - name: trust0
+              readOnly: true
+              mountPath: /etc/mqm/pki/trust/0
+            - name: cm-qm1
+              readOnly: true
+              mountPath: /etc/mqm/mq.mqsc
+              subPath: mq.mqsc
+            - name: cm-qm1
+              readOnly: true
+              mountPath: /etc/mqm/mq.ini
+              subPath: mq.ini
+            - name: oidc-certificate
+              mountPath: /etc/mqm/pki/trust/default
+          terminationMessagePolicy: File
+          image: >-
+            cp.icr.io/cp/ibm-mqadvanced-server-integration@sha256:dca6dbcfbd93ea0e4503f410c4bb986531435965bda6a63f1b6fecff70e88767
+      serviceAccount: qm1-ibm-mq
+      volumes:
+        - name: default
+          secret:
+            secretName: qm1
+            items:
+              - key: tls.key
+                path: tls.key
+              - key: tls.crt
+                path: tls.crt
+            defaultMode: 288
+        - name: trust0
+          secret:
+            secretName: qm1
+            items:
+              - key: app.crt
+                path: app.crt
+            defaultMode: 288
+        - name: cm-qm1
+          configMap:
+            name: qm1
+            items:
+              - key: mq.mqsc
+                path: mq.mqsc
+              - key: mq.ini
+                path: mq.ini
+            defaultMode: 420
+        - name: oidc-certificate
+          secret:
+            secretName: ibmcloud-cluster-ca-cert
+            items:
+              - key: ca.crt
+                path: OIDC_CERTIFICATE.crt
+            defaultMode: 420
+      dnsPolicy: ClusterFirst
+  volumeClaimTemplates:
+    - kind: PersistentVolumeClaim
+      apiVersion: v1
+      metadata:
+        name: data
+        namespace: cp4i
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/component: integration
+          app.kubernetes.io/instance: qm1
+          app.kubernetes.io/managed-by: operator
+          app.kubernetes.io/name: ibm-mq
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi
+        storageClassName: gp2-csi
+        volumeMode: Filesystem
+      status:
+        phase: Pending
+  serviceName: qm
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: OnDelete
+  revisionHistoryLimit: 10
+status:
+  observedGeneration: 1
+  replicas: 3
+  currentReplicas: 3
+  updatedReplicas: 3
+  currentRevision: qm1-ibm-mq-7999f5c8c8
+  updateRevision: qm1-ibm-mq-7999f5c8c8
+  collisionCount: 0

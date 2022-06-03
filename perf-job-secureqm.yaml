@@ -1,0 +1,80 @@
+# © Copyright IBM Corporation 2021
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    run: "perf-job-secureqm"
+  name: "perf-job-secureqm"
+spec:
+  template:
+    metadata:
+      labels:
+        run: cphtestp
+    spec:
+      containers:
+      - env:
+        - name: LICENSE
+          value: accept
+        - name: MQ_QMGR_HOSTNAME
+          value: "secureqm-ibm-mq.cp4i"
+        - name: MQ_QMGR_PORT
+          value: "1414"
+        - name: MQ_QMGR_NAME
+          value: "SECUREQM"
+        - name: MQ_USERID
+          value: 
+        - name: MQ_PASSWORD
+          value: 
+        - name: MQ_QMGR_CHANNEL
+          value: SECUREQMCHL
+        - name: MQ_AUTORECONNECT
+          value: MQCNO_RECONNECT
+        - name: MQ_QMGR_QREQUEST_PREFIX
+          value: REQUEST
+        - name: MQ_QMGR_QREPLY_PREFIX
+          value: REPLY
+        - name: MQ_RESPONDER_THREADS
+          value: "100"
+        - name: MQ_NON_PERSISTENT
+          value: "0"
+        - name: MQ_MSGSIZE
+          value: "2048" 
+        - name: MQ_RUNLENGTH
+          value: "30"
+        - name: MQ_RESULTS_CSV
+          value: "true"
+        - name: MQ_RESULTS
+          value: "true"
+        - name: MQ_TLS_CIPHER
+          value: ECDHE_RSA_AES_128_CBC_SHA256
+        - name: MQ_TLS_CERTLABEL
+          value: mqservercert
+        image: docker.io/yarod/cphtestp
+        imagePullPolicy: Always
+        name: cphtestp
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "2"
+          limits:
+            memory: "2Gi"
+            cpu: "2"
+        terminationMessagePath: /dev/termination-log
+      imagePullSecrets:
+      - name: ""
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
