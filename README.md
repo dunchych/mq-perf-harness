@@ -208,7 +208,7 @@ perf-job-secureqm-kqk4b   0/1     Completed   0          2d20h
 oc logs perf-job-secureqm-kqk4b
 ```
 
-Note there is much higher test thruput of 600-700 mq msgs/sec 
+Note there is much higher test thruput of 600-700 mq msgs/sec because the network traffic between the test harness and MQ is now local within OpenShift
 ```
 # CSV Results
 # TLS Cipher: ECDHE_RSA_AES_128_CBC_SHA256
