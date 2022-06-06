@@ -45,7 +45,7 @@ Alternatively connect MQ Explorer to internal OCP endpoint:
 
 ## 3. Run MQ Performance test harnbess
 The MQ-CPH Performance Harness (hereafter referred to as MQ-CPH), is a native MQI interface (C/C++), performance test tool, based largely on the function and externals of the JMSPerfHarness tool (also on GitHub at https://github.com/ot4i/perf-harness). It provides an extensive set of performance messaging functionality, as well as many other features such as throttled operation (a fixed rate and/or number of messages), multiple destinations and live performance reporting. It is one of the many tools used by the IBM MQ performance team at Hursley, for tests ranging from a single client to more than 10,000 clients.
-Perf harness scenario used here is shown below  
+Perf harness scenario used here is shown below. The only correction is that `cphtestp` itself provides both requesters and responders shown on the diagram embedded in the harness:
 ![MQ Performance Test Harness](./static/harness.png)
 
 Containerized MQ performance harness is published on https://github.com/ibm-messaging/cphtestp
