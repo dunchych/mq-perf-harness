@@ -46,6 +46,7 @@ data:
     define qlocal(reply19) maxdepth(5000) DEFPSIST(YES) replace
     define qlocal(reply20) maxdepth(5000) DEFPSIST(YES) replace
     define qlocal(reply21) maxdepth(5000) DEFPSIST(YES) replace
+    define qlocal(REPLACEQ) maxdepth(5000) DEFPSIST(YES) replace
     DEFINE CHANNEL(SECUREQMCHL) CHLTYPE(SVRCONN) TRPTYPE(TCP) SSLCAUTH(OPTIONAL) SSLCIPH('ANY_TLS12_OR_HIGHER')
     SET CHLAUTH(SECUREQMCHL) TYPE(BLOCKUSER) USERLIST('nobody') ACTION(ADD)
     DEFINE CHANNEL(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN) REPLACE 

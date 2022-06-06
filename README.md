@@ -24,14 +24,32 @@ export MQSSLKEYR=/Users/yaro/projects/mq-perf-harness/ssl/key
 
 ```
 
-## 2. Connect MQ Explorer to NativeHA MQ instance
+## 2. Connect classic MQ Explorer to NativeHA MQ instance
 
-Deploy MQ Explorer in a container using pre-built container yarod/workstation-mqdemo
+Use existing MQ Explore instance or for quick setup deploy pre-installed MQ Explorer in a container using container image `yarod/workstation-mqdemo` 
+One can run it locally on a docker-enabled laptop
+
+```
+docker run -p 6080:80 yarod/workstation-mqdemo
+```
+and then point the browser to 
+```
+http://localhost:6080/
+```
+Or run it on openshift:
+
 ```
 oc new project mq-explorer
 oc set serviceaccount deployment workstation-mqdemo runasanyuid
 oc new-app yarod/workstation-mqdemo
 oc expose svc/workstation-mqdemo
+```
+Then open the browser to the exposed route (in example shown below, the route is:    
+`workstation-mqdemo-mq-explorer.apps.mq-ocp48.labocp48.net`):
+```
+oc get route
+NAME                 HOST/PORT                                                   PATH   SERVICES             PORT     TERMINATION   WILDCARD
+workstation-mqdemo   workstation-mqdemo-mq-explorer.apps.mq-ocp48.labocp48.net          workstation-mqdemo   80-tcp                 None
 ```
 Copy MQ trust certificate store to MQ Explorer container 
 ```
@@ -43,7 +61,34 @@ Open URL exposed by MQ Explorer route created earlier
 Alternatively connect MQ Explorer to internal OCP endpoint:
 ![MQ Explorer](./static/mq-explorer-internal.png)
 
-## 3. Run MQ Performance test harness
+
+## 3. Connect to NativeHA MQ instance cloud native UI
+When instructed in QueueManager yaml, MQ Operator will instantiate a web UI, a cloud native MQ web UI, which is further integrated with CloudPak for Integration Platform navigator.
+Using OpenShift console, navigate to the QueueManager instance in MQ Operator view and find the link to the MQ Web UI:
+![MQ WebUI](./static/web-ui.png)
+When MQ QueueManager is installed via MQ Operator, common services components of CP4I are installed in `ibm-common-services` namespace.
+These component, among other things, enable single sign-on betweem MQ web UI and OpenShift platform. Once logged in MQ instance via OpenShift, one can manage QM via its webui:
+![MQ WebUI](./static/web-ui-2.png)
+
+## 4. Update MQ QueueManager
+Lets add a queue to a running QM. All MQ objects are defined via MQSC script embedded in a config map defined in the `secureqm-cm.yaml`.  Lets add a directive to add a new queue.
+### 4.1 Add MQSC defintion in local file (`secureqm-cm.yaml`)
+```
+define qlocal(NEWQUEUE) maxdepth(5000) DEFPSIST(YES) replace
+```
+### 4.2 Update confing map in OpenShift
+```
+oc apply -f secureqm-cm.yaml
+```
+You can see an updated ConfigMap in Openshift, but for this to take effect for running QM, we need to update the QM. With NativeHA, the QM is implemented as StatefulSet running 3 pods, a leader and 2 replicas. To update the QM StatefulSet, we use standard Kubernetes update mechanism which will do rolling updates of all pods:
+```
+oc rollout restart statefulset secureqm-ibm-mq
+```
+![MQ WebUI](./static/update.png)
+###
+
+
+## 5. Run MQ Performance test harness
 The MQ-CPH Performance Harness (hereafter referred to as MQ-CPH), is a native MQI interface (C/C++), performance test tool, based largely on the function and externals of the JMSPerfHarness tool (also on GitHub at https://github.com/ot4i/perf-harness). It provides an extensive set of performance messaging functionality, as well as many other features such as throttled operation (a fixed rate and/or number of messages), multiple destinations and live performance reporting. It is one of the many tools used by the IBM MQ performance team at Hursley, for tests ranging from a single client to more than 10,000 clients.
 Perf harness scenario used here is shown below. The only correction is that `cphtestp` itself provides both requesters and responders shown on the diagram embedded in the harness:
 ![MQ Performance Test Harness](./static/harness.png)
