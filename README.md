@@ -242,8 +242,15 @@ cph testing finished--------------------
 
 ### Run MQ Test Harness in OpenShift
 Use kubernetes job to run the `cphtestp` container on OpenShift.
+
+It would likely fail as the client attempts to write to some temporary storage associated with the lifetime of the pod. Since this pod is only used for testing purposes the easiest way to resolve this issue is to grant the OpenShift permission for the pod to run with its preferred user as follows:
+
+```
+oc project <test perf project>
+oc adm policy add-scc-to-user anyuid -z default
+```
 The job definition is provided `perf-job-secureqm.yaml`
-It uses same container and same env vars as remore test, but uses internal MQ endpoint provided by OpenShift service `secureqm-ibm-mq.cp4i`   
+It uses same container and same env vars as remote test, but uses internal MQ endpoint provided by OpenShift service `secureqm-ibm-mq.cp4i`   
 Examine results as pod logs
 ```
 oc project mq-pref-harness

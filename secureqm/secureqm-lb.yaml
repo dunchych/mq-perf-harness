@@ -5,7 +5,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app.kubernetes.io/instance: secureqm-ibm-mq
+    app.kubernetes.io/instance: secureqm
     app.kubernetes.io/name: ibm-mq
   ports:
     - name: mq
