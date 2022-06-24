@@ -1,0 +1,20 @@
+{
+    "channel":
+    [
+        {
+            "name": "SYSTEM.ADMIN.SVRCONN",
+            "clientConnection":
+            {
+                "connection":
+                [
+                    {
+                        "host": "secureqm-ibm-mq.cp4i-mq",
+                        "port": 1414
+                    }
+                ],
+                "queueManager": "secureqm"
+            },
+          "type": "clientConnection"
+        }
+    ]
+}

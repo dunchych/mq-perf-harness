@@ -1,0 +1,59 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mq-extended-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mq-extended-metrics
+  template:
+    metadata:
+      labels:
+        app: mq-extended-metrics
+    spec:
+      containers:
+        - name: mq-extended-metrics
+          image: yarod/mq-extended-metrics
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu:  1000m
+              memory: 1000Mi
+            requests:
+              cpu: 200m
+              memory: 200Mi
+          env:
+            - name: MQSERVER
+              value: "SYSTEM.ADMIN.SVRCONN/TCP/secureqm-ibm-mq.cp4i-mq(1414)"
+            - name: MQSSLKEYR
+              value: "/run/runmqprometheus/tls/clientkey"
+            - name: MQCCDTURL
+              value: "file:///run/runmqprometheus/ccdt.json"
+            - name: QUEUE_MANAGER
+              value: "secureqm"
+            - name: QUEUE_MANAGER_CHANNEL
+              value: "SYSTEM.ADMIN.SVRCONN"
+            - name: QUEUE_MANAGER_CCDT
+              value: "file:///run/runmqprometheus/ccdt.json"
+            - name: QUEUES_MONITORED
+              value: "REQUEST*,REPLY*"
+---
+kind: Service
+apiVersion: v1
+metadata: 
+  name: secureqm-ibm-mq-extended-metrics
+  labels:
+    app: mq-extended-metrics
+spec:
+  type: ClusterIP
+  ports:
+    - name: metrics
+      protocol: TCP
+      port: 9157
+      targetPort: 9157
+  selector:
+    app: mq-extended-metrics
+
+
