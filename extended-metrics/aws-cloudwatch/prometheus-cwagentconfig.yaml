@@ -6,9 +6,14 @@ metadata:
 data:
   cwagentconfig.json: |
     {
+      "agent": { 
+        "region": "ca-central-1"
+       },
       "logs": {
         "metrics_collected": {
           "prometheus": {
+            "cluster_name": "cp4i",
+            "log_group_name": "/aws/containerinsights/cp4i/prometheus",
             "prometheus_config_path": "/etc/prometheusconfig/prometheus.yaml",
             "emf_processor": {
               "metric_declaration": [
@@ -198,14 +203,7 @@ data:
                 "metric_selectors": [
                  "^ibmmq_qmgr"
                  ]
-                },
-                {"source_labels": ["job","qmgr"],
-                "label_matcher": "^ibm-mq-extended;secureqm$",
-                "dimensions": [["ClusterName","qmgr","queue"]],
-                "metric_selectors": [
-                 "^ibmmq_queue_depth$"
-                 ]
-                }
+                }        
               ]
             }
           }
