@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-secureqm-extended-metrics
+  namespace: cp4i-mq
+spec:
+  ports:
+  - name: metrics
+    port: 9157
+    protocol: TCP
+    targetPort: 9157
+  selector:
+    app: mq-extended-metrics
+  sessionAffinity: None
+  type: LoadBalancer

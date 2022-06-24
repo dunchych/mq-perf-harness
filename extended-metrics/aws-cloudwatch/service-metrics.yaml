@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  annotations:
+    prometheus.io/port: '9157'
+    prometheus.io/scrape: 'true'
+  name: secureqm-ibm-mq-metrics
+spec:
+  ports:
+    - name: metrics
+      protocol: TCP
+      port: 9157
+      targetPort: 9157
+  selector:
+    app.kubernetes.io/instance: secureqm
+    app.kubernetes.io/name: ibm-mq
+  type: ClusterIP

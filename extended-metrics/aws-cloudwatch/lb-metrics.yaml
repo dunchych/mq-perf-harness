@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-secureqm-metrics
+  namespace: cp4i-mq
+spec:
+  ports:
+  - name: metrics
+    port: 9157
+    protocol: TCP
+    targetPort: 9157
+  selector:
+    app.kubernetes.io/instance: secureqm
+    app.kubernetes.io/name: ibm-mq
+  sessionAffinity: None
+  type: LoadBalancer
