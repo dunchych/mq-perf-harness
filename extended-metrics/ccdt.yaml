@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ccdt-cm
+data:
+  ccdt.json: |-
+    {
+        "channel":
+        [
+            {
+                "name": "SYSTEM.ADMIN.SVRCONN",
+                "clientConnection":
+                {
+                    "connection":
+                    [
+                        {
+                            "host": "secureqm0615-ibm-mq.cp4i",
+                            "port": 1414
+                        }
+                    ],
+                    "queueManager": "SECUREQM"
+                },
+              "type": "clientConnection"
+            }
+        ]
+    }

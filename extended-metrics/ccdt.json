@@ -8,11 +8,11 @@
                 "connection":
                 [
                     {
-                        "host": "secureqm-ibm-mq.cp4i-mq",
+                        "host": "secureqm0615-ibm-mq.cp4i",
                         "port": 1414
                     }
                 ],
-                "queueManager": "secureqm"
+                "queueManager": "SECUREQM"
             },
           "type": "clientConnection"
         }

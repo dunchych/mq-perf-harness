@@ -198,10 +198,17 @@ data:
                  ]
                 },
                 {"source_labels": ["job","qmgr"],
-                "label_matcher": "^ibm-mq;secureqm$",
+                "label_matcher": "^ibm-mq;SECUREQM$",
                 "dimensions": [["ClusterName","qmgr"]],
                 "metric_selectors": [
                  "^ibmmq_qmgr"
+                 ]
+                },
+                {"source_labels": ["job","qmgr"],
+                "label_matcher": "^ibm-mq-extended;SECUREQM$",
+                "dimensions": [["ClusterName","qmgr","queue"]],
+                "metric_selectors": [
+                 "^ibmmq_queue_depth$"
                  ]
                 }        
               ]

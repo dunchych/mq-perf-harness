@@ -234,8 +234,8 @@ data:
       static_configs:
       - targets: ['secureqm-ibm-mq-metrics.cp4i-mq:9157']
 
-    #- job_name: 'ibm-mq-extended'
-    #  metrics_path: /metrics
-    #  scrape_interval: 15s
-    #  static_configs:
-    #  - targets: ['secureqm-ibm-mq-extended-metrics.cp4i-mq:9157']  
+    - job_name: 'ibm-mq-extended'
+      metrics_path: /metrics
+      scrape_interval: 15s
+      static_configs:
+      - targets: ['secureqm-ibm-mq-extended-metrics.cp4i:9157']  

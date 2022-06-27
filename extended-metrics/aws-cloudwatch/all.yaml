@@ -393,6 +393,8 @@ kind: ServiceAccount
 metadata:
   name: cwagent-prometheus
   namespace: amazon-cloudwatch
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::711149778461:role/ocp-cf-pvt-944v2-worker-role
 
 ---
 kind: ClusterRole

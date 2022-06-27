@@ -26,19 +26,28 @@ spec:
               memory: 200Mi
           env:
             - name: MQSERVER
-              value: "SYSTEM.ADMIN.SVRCONN/TCP/secureqm-ibm-mq.cp4i-mq(1414)"
+              value: "SYSTEM.ADMIN.SVRCONN/TCP/secureqm0615-ibm-mq.cp4i(1414)"
             - name: MQSSLKEYR
               value: "/run/runmqprometheus/tls/clientkey"
             - name: MQCCDTURL
               value: "file:///run/runmqprometheus/ccdt.json"
             - name: QUEUE_MANAGER
-              value: "secureqm"
+              value: "SECUREQM"
             - name: QUEUE_MANAGER_CHANNEL
               value: "SYSTEM.ADMIN.SVRCONN"
             - name: QUEUE_MANAGER_CCDT
               value: "file:///run/runmqprometheus/ccdt.json"
             - name: QUEUES_MONITORED
               value: "REQUEST*,REPLY*"
+          volumeMounts:
+            - name: ccdt
+              mountPath: /run/runmqprometheus/ccdt.json
+              subPath: ccdt.json
+
+      volumes:
+        - name: ccdt
+          configMap:
+            name: ccdt-cm
 ---
 kind: Service
 apiVersion: v1

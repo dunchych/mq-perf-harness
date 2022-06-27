@@ -29,23 +29,12 @@ spec:
           env:
             - name: CI_VERSION
               value: "k8s/1.3.10"
-            - name: AWS_DEFAULT_REGION
-              value: ca-central-1
-            - name: AWS_REGION
-              value: ca-central-1
-            - name: AWS_ROLE_ARN
-              value: arn:aws:iam::711149778461:role/ocp-cf-pvt-944v2-worker-role
-            - name: AWS_WEB_IDENTITY_TOKEN_FILE
-              value: /var/run/secrets/eks.amazonaws.com/serviceaccount/token
           # Please don't change the mountPath
           volumeMounts:
             - name: prometheus-cwagentconfig
               mountPath: /etc/cwagentconfig
             - name: prometheus-config
               mountPath: /etc/prometheusconfig
-            - name: aws-iam-token
-              mountPath: /var/run/secrets/eks.amazonaws.com/serviceaccount
-              readOnly: true
 
       volumes:
         - name: prometheus-cwagentconfig
@@ -54,13 +43,5 @@ spec:
         - name: prometheus-config
           configMap:
             name: prometheus-config
-        - name: aws-iam-token
-          projected:
-            defaultMode: 420
-            sources:
-            - serviceAccountToken:
-                audience: sts.amazonaws.com
-                expirationSeconds: 86400
-                path: token
       terminationGracePeriodSeconds: 60
       serviceAccountName: cwagent-prometheus
