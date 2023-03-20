@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: ibmmq-queue-depth
+spec:
+  groups:
+  - name: ibmmq
+    rules:
+    - alert: QueueDepthWarning
+      expr: (ibmmq_queue_depth * 100 )/ ibmmq_queue_attribute_max_depth > 40
+    - alert: QueueDepthAlert
+      expr: (ibmmq_queue_depth * 100 )/ ibmmq_queue_attribute_max_depth > 80
