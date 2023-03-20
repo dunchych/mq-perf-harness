@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nativeha-qm-ini
+  namespace: cp4i
+data:
+  nativeha.ini: |
+    Log:
+       LogPrimaryFiles=15
+       LogSecondaryFiles=20
+       LogBufferPages=1024
+    Channels:
+       MaxChannels= 200
+       MQIBindType=FASTPATH
+    DiagnosticMessages:
+       Name=DiagSyslog
+       Service=Syslog
+       Ident=mqseries
+       Severities=I+
